@@ -1,24 +1,18 @@
+
   const functions = require('firebase-functions');
-  const firebase = require('firebase-admin');
   const express = require('express');
   const engines = require('consolidate');
-
-  const firebaseApp = firebase.initializeApp(
-    functions.config().firebase
-  );
-
-  function getFacts() {
-    const ref = firebaseApp.database().ref('facts');
-    return ref.once('value').then(snap => snap.val());
-  }
+  const data = require('./config/dbconn.js');
 
   const app = express();
   app.engine('hbs', engines.handlebars);
   app.set('views', './views');
   app.set('view engine', 'hbs');
 
+  //data.addToData('facts', {'text':'It s getting better'});
+
   app.get('/', (request, response) => {
-    getFacts().then(facts=>{
+    data.getData('facts').then(facts=>{
       response.render('index', {facts});
     });
   });
