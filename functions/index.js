@@ -13,7 +13,7 @@
 
   app.get('/', (request, response) => {
     data.getData('facts').then(facts=>{
-      response.render('index', {facts});
+      response.render('page-template', {'<h1>This is a Template page</h1>'});
     });
   });
 
