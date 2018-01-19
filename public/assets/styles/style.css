@@ -1,0 +1,12 @@
+body {
+  background: linear-gradient(
+    to right bottom,
+    #ffd800 0%,#fc7a15 9%,#ff081a 17%,#fc7a15 26%,#ffd800 41%,#ffd800 56%,#fc7a15 75%,#fc7a15 87%,#ff081a 100%
+    );
+}
+
+.fit-size {
+  height: 2.85714286em;
+  margin: 10px;
+  
+}
