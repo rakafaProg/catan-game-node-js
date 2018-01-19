@@ -1,19 +1,19 @@
 
   const functions = require('firebase-functions');
   const express = require('express');
-  const engines = require('consolidate');
   const data = require('./config/dbconn.js');
+  const hbs = require('hbs');
 
   const app = express();
-  app.engine('hbs', engines.handlebars);
-  app.set('views', './views');
   app.set('view engine', 'hbs');
+  app.set('views', './views');
 
-  //data.addToData('facts', {'text':'It s getting better'});
+  hbs.registerPartials('./views/partials');
+
 
   app.get('/', (request, response) => {
     data.getData('facts').then(facts=>{
-      response.render('page-template', {});
+      response.render('log-in', {});
     });
   });
 
