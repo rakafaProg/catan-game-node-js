@@ -13,5 +13,16 @@ body {
 .logo-size {
   height: 2.85714286em;
   margin: 10px;
+  width: 113.81px;
 
+}
+
+.ui.large.form .ui.stacked.segment>div.ui.fluid {
+  margin: 20px auto 0 auto;
+  width: 90%;
+
+}
+
+.invisible {
+  display: none !important;
 }

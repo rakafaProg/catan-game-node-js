@@ -9,11 +9,16 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "connect-session-firebase": "^5.7.0",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
-    "firebase-admin": "~5.4.2",
+    "express-session": "^1.15.6",
+    "firebase-admin": "^5.8.1",
     "firebase-functions": "^0.7.1",
     "handlebars": "^4.0.11",
-    "hbs": "^4.0.1"
+    "hbs": "^4.0.1",
+    "md5": "^2.2.1"
   },
   "private": true
 }

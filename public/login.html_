@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Settlers of Catan</title>
+        <link rel=icon href="assets/images/icon.png" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+        <link rel="stylesheet" href="assets/styles/style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    </head>
+
+    <body class="ui header">
+
+        <div class="ui inverted stackable  menu">
+
+        <img class="logo-size" src="assets/images/logo.png">
+
+
+        <button class="item ui header yellow">
+          <i class="announcement icon"></i>
+          Start a New Game
+        </button>
+        <button class="item ui header yellow">
+          <i class="game icon"></i>
+          Join Existing Game
+        </button>
+        <button class="item ui header yellow">
+          <i class="user icon"></i>
+          Log-in
+        </button>
+        <button class="item ui header yellow">
+          <i class="add user icon"></i>
+          Register
+        </button>
+        <div class="item ui right header orange">
+        </div>
+        <button class="item ui header orange signout" >
+          <i class="remove user icon"></i>
+          Sign-out
+        </button>
+
+        </div>
+        <p> .
+        </p>
+
+<br /><br /><br />
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+
+    <h2 class="ui image header">
+      <img src="assets/images/icon.png" class="image">
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <form class="ui large form" >
+      <div class="ui stacked segment">
+
+        <div class="ui left icon fluid input">
+          <i class="user icon"></i>
+          <input type="text" name="email" placeholder="E-mail address">
+        </div>
+
+
+        <div class="ui left icon fluid input">
+          <input type="password" placeholder="Password" name="password" required>
+          <i class="lock icon"></i>
+        </div>
+
+        <div class="ui fluid large orange submit button">Login</div>
+      </div>
+      <div class="ui error message"></div>
+    </form>
+
+    <div class="ui message">
+      New to us? <a href="./register">Sign Up</a>
+    </div>
+  </div>
+</div>
+
+
+ <style type="text/css">
+    .column {
+      max-width: 450px;
+    }
+  </style>
+</body>
+</html>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDxSPk6OZJvKsz4YWRapn7ZhTqfWFHmU2o",
+    authDomain: "the-settlers-of-catan.firebaseapp.com",
+    databaseURL: "https://the-settlers-of-catan.firebaseio.com",
+    projectId: "the-settlers-of-catan",
+    storageBucket: "the-settlers-of-catan.appspot.com",
+    messagingSenderId: "935678333963"
+  };
+  firebase.initializeApp(config);
+
+  const auth = firebase.auth();
+</script>
+
+
+<script>
+
+  auth.onAuthStateChanged(firebaseUser => {
+    if(!firebaseUser) {
+      console.log('no user');
+      return;
+    }
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+
+
+      $.post( "create", {'name' :  'my name' })
+      .done(function( data ) {
+        console.log(data);
+        //$( ".ui.error.message" ).html( "Data Loaded: " + data );
+      });
+
+    }).catch(function(error) {
+      console.log('Error');
+    });
+
+
+  });
+
+
+  $(document).ready(function() {
+
+    $('button.signout').click(function(e){
+      console.log('signout');
+      auth.signOut();
+    });
+
+
+    $('.submit.button').click(function(e) {
+      e.preventDefault();
+
+
+
+      let email = $('input[name=email]').val();
+      let pass = $('input[name=password]').val();
+
+      auth.signInWithEmailAndPassword(email, pass).then(e => console.log('success'))
+      .catch(e => console.log(e.message))
+      ;
+
+
+
+
+    });
+  });
+
+</script>
